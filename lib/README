@@ -2,6 +2,10 @@
 This directory is intended for project specific (private) libraries.
 PlatformIO will compile them to static libraries and link into executable file.
 
+Project note: keep third-party libraries managed by PlatformIO in `lib_deps`
+inside `platformio.ini`. Place only custom, shared code here if it grows beyond
+`src/` modules.
+
 The source code of each library should be placed in a an own separate directory
 ("lib/your_library_name/[here are source files]").
 

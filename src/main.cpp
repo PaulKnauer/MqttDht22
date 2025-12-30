@@ -1,20 +1,22 @@
-#include "UserConfig.h"
-#include "MqttClient.h"
-#include "Dht22.h"
+#include <Arduino.h>
 
-MqttClient *client;
-Dht22 *dht22;
+#include "UserConfig.h"
+#include "app/AppController.h"
+#include "led/StatusLed.h"
+#include "mqtt/MqttPublisher.h"
+#include "sensors/Dht22Sensor.h"
+
+MqttPublisher publisher;
+Dht22Sensor sensor(DHT22_PIN);
+StatusLed status_led(STATUS_LED_PIN, STATUS_LED_ACTIVE_LOW);
+AppController app(sensor, publisher, status_led);
 
 void setup() {
-  client = new MqttClient();
-  client->connect();
-  dht22 = new Dht22();
+  status_led.begin();
+  app.begin();
 }
 
 void loop() {
-  client->loop();
-  dht22->read();
-  client->publish(dht22->getTemperature(), MQTT_TEMPERATURE_PUBLISH_TOPIC);
-  client->publish(dht22->getHumidity(), MQTT_HUMIDITY_PUBLISH_TOPIC);
-  delay(DELAY);
+  status_led.loop(millis());
+  app.loop();
 }

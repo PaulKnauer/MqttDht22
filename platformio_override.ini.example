@@ -1,0 +1,11 @@
+[env:d1]
+build_flags =
+	-D WLAN_SSID=\"your-ssid\"
+	-D WLAN_PASSWORD=\"your-pass\"
+	-D MQTT_SERVER=\"192.168.1.22\"
+	-D MQTT_SERVERPORT=31883
+	-D MQTT_CLIENT_NAME=\"OfficeDht22Sensor\"
+	-D MQTT_TOPIC_PREFIX=\"Office/DHT22\"
+	-D MQTT_USERNAME=\"\"
+	-D MQTT_PASSWORD=\"\"
+	-D DHT22_PIN=2

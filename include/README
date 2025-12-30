@@ -37,3 +37,7 @@ Read more about using header files in official GCC documentation:
 * Computed Includes
 
 https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html
+
+Project note: headers live alongside implementation in `src/` for now. Use
+`include/` only if you introduce cross-project headers or external library
+interfaces.
