@@ -1,6 +1,23 @@
 #include "led/StatusLed.h"
 
+#ifdef UNIT_TEST
+#include <stdint.h>
+
+#ifndef HIGH
+#define HIGH 0x1
+#endif
+#ifndef LOW
+#define LOW 0x0
+#endif
+#ifndef OUTPUT
+#define OUTPUT 0x1
+#endif
+
+static inline void pinMode(uint8_t, uint8_t) {}
+static inline void digitalWrite(uint8_t, uint8_t) {}
+#else
 #include <Arduino.h>
+#endif
 
 StatusLed::StatusLed(uint8_t pin, bool active_low)
 : pin_(pin),

@@ -44,10 +44,10 @@ class FakePublisher : public IMqttPublisher {
       publish_count++;
       return true;
     }
-    bool isConnected() const override {
+    bool isConnected() override {
       return connected;
     }
-    bool isWifiConnected() const override {
+    bool isWifiConnected() override {
       return wifi_connected;
     }
 
@@ -64,7 +64,7 @@ class FakePublisher : public IMqttPublisher {
 void test_publish_on_ok_reading() {
   FakeSensor sensor;
   FakePublisher publisher;
-  StatusLed status_led(LED_BUILTIN, true);
+  StatusLed status_led(0, true);
   AppController app(sensor, publisher, status_led);
 
   app.begin();
@@ -78,7 +78,7 @@ void test_publish_on_ok_reading() {
 void test_error_publishes_after_threshold() {
   FakeSensor sensor;
   FakePublisher publisher;
-  StatusLed status_led(LED_BUILTIN, true);
+  StatusLed status_led(0, true);
   AppController app(sensor, publisher, status_led);
 
   sensor.reading.ok = false;

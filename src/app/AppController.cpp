@@ -1,20 +1,13 @@
 #include "app/AppController.h"
 
-#ifdef UNIT_TEST
-#include <stdint.h>
-#include <stdio.h>
+#include <Arduino.h>
 
-extern "C" uint32_t millis() {
-  return 0;
-}
-
+#if defined(UNIT_TEST) && !defined(ARDUINO)
 static inline char *dtostrf(double val, signed char width, unsigned char prec, char *s) {
   (void)width;
   snprintf(s, 32, "%.*f", prec, val);
   return s;
 }
-#else
-#include <Arduino.h>
 #endif
 
 #include "UserConfig.h"

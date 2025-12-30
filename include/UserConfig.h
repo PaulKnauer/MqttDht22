@@ -40,7 +40,7 @@
 #endif
 
 #ifndef REQUIRE_CONFIG
-#define REQUIRE_CONFIG 1
+#define REQUIRE_CONFIG 0
 #endif
 
 #if REQUIRE_CONFIG

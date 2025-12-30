@@ -12,8 +12,8 @@ class MqttPublisher : public IMqttPublisher {
     void connect() override;
     void loop() override;
     bool publish(const char *topic, const char *payload, bool retained) override;
-    bool isConnected() const override;
-    bool isWifiConnected() const override;
+    bool isConnected() override;
+    bool isWifiConnected() override;
   private:
     WiFiClient esp_client_;
     PubSubClient client_;

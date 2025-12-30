@@ -36,7 +36,8 @@ export MQTT_PASSWORD=""
 Alternatively, copy `platformio_override.ini.example` to `platformio_override.ini`
 and set values there. This file is ignored by git.
 
-Builds will fail if required values are left empty.
+Set `REQUIRE_CONFIG=1` in your override if you want builds to fail when
+required values are left empty.
 
 ## Topics
 

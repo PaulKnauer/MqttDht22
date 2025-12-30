@@ -32,11 +32,11 @@ bool MqttPublisher::publish(const char *topic, const char *payload, bool retaine
   return client_.publish(topic, payload, retained);
 }
 
-bool MqttPublisher::isConnected() const {
+bool MqttPublisher::isConnected() {
   return client_.connected();
 }
 
-bool MqttPublisher::isWifiConnected() const {
+bool MqttPublisher::isWifiConnected() {
   return WiFi.status() == WL_CONNECTED;
 }
 
