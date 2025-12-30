@@ -20,11 +20,8 @@ static inline void digitalWrite(uint8_t, uint8_t) {}
 #endif
 
 StatusLed::StatusLed(uint8_t pin, bool active_low)
-: pin_(pin),
-  active_low_(active_low),
-  pattern_(LedPattern::Off),
-  last_toggle_ms_(0),
-  state_on_(false) {}
+    : pin_(pin), active_low_(active_low), pattern_(LedPattern::Off), last_toggle_ms_(0),
+      state_on_(false) {}
 
 void StatusLed::begin() {
   pinMode(pin_, OUTPUT);
@@ -43,21 +40,21 @@ void StatusLed::setPattern(LedPattern pattern) {
 
 void StatusLed::loop(uint32_t now_ms) {
   switch (pattern_) {
-    case LedPattern::Off:
-      write(false);
-      break;
-    case LedPattern::SolidOn:
-      write(true);
-      break;
-    case LedPattern::BlinkSlow:
-      updateBlink(now_ms, 1000);
-      break;
-    case LedPattern::BlinkFast:
-      updateBlink(now_ms, 250);
-      break;
-    case LedPattern::PulseDouble:
-      updatePulseDouble(now_ms);
-      break;
+  case LedPattern::Off:
+    write(false);
+    break;
+  case LedPattern::SolidOn:
+    write(true);
+    break;
+  case LedPattern::BlinkSlow:
+    updateBlink(now_ms, 1000);
+    break;
+  case LedPattern::BlinkFast:
+    updateBlink(now_ms, 250);
+    break;
+  case LedPattern::PulseDouble:
+    updatePulseDouble(now_ms);
+    break;
   }
 }
 

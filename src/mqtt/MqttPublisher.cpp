@@ -5,9 +5,7 @@
 #include "UserConfig.h"
 
 MqttPublisher::MqttPublisher()
-: client_(esp_client_),
-  last_wifi_attempt_ms_(0),
-  last_mqtt_attempt_ms_(0) {
+    : client_(esp_client_), last_wifi_attempt_ms_(0), last_mqtt_attempt_ms_(0) {
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
   delay(10);
@@ -25,7 +23,7 @@ void MqttPublisher::loop() {
   }
 }
 
-bool MqttPublisher::publish(const char *topic, const char *payload, bool retained) {
+bool MqttPublisher::publish(const char* topic, const char* payload, bool retained) {
   if (!client_.connected()) {
     return false;
   }
@@ -65,13 +63,8 @@ bool MqttPublisher::ensureMqtt() {
     return false;
   }
   last_mqtt_attempt_ms_ = now;
-  if (client_.connect(MQTT_CLIENT_NAME,
-                      MQTT_USERNAME,
-                      MQTT_PASSWORD,
-                      MQTT_STATUS_PUBLISH_TOPIC,
-                      1,
-                      true,
-                      MQTT_STATUS_OFFLINE)) {
+  if (client_.connect(MQTT_CLIENT_NAME, MQTT_USERNAME, MQTT_PASSWORD, MQTT_STATUS_PUBLISH_TOPIC, 1,
+                      true, MQTT_STATUS_OFFLINE)) {
     client_.publish(MQTT_STATUS_PUBLISH_TOPIC, MQTT_STATUS_ONLINE, true);
     return true;
   }

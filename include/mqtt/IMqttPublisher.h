@@ -2,13 +2,13 @@
 #define IMQTT_PUBLISHER_H
 
 class IMqttPublisher {
-  public:
-    virtual ~IMqttPublisher() = default;
-    virtual void connect() = 0;
-    virtual void loop() = 0;
-    virtual bool publish(const char *topic, const char *payload, bool retained) = 0;
-    virtual bool isConnected() = 0;
-    virtual bool isWifiConnected() = 0;
+public:
+  virtual ~IMqttPublisher() = default;
+  virtual void connect() = 0;
+  virtual void loop() = 0;
+  virtual bool publish(const char* topic, const char* payload, bool retained) = 0;
+  virtual bool isConnected() = 0;
+  virtual bool isWifiConnected() = 0;
 };
 
 #endif

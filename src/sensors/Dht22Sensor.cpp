@@ -1,7 +1,6 @@
 #include "sensors/Dht22Sensor.h"
 
-Dht22Sensor::Dht22Sensor(uint8_t pin)
-: dht_(pin) {
+Dht22Sensor::Dht22Sensor(uint8_t pin) : dht_(pin) {
   last_reading_.temperature_c = 0.0f;
   last_reading_.humidity_percent = 0.0f;
   last_reading_.timestamp_ms = 0;

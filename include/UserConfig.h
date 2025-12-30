@@ -2,10 +2,10 @@
 #define UserConfig_h
 
 #ifndef WLAN_SSID
-#define WLAN_SSID        ""
+#define WLAN_SSID ""
 #endif
 #ifndef WLAN_PASSWORD
-#define WLAN_PASSWORD    ""
+#define WLAN_PASSWORD ""
 #endif
 
 #ifndef DHT22_PIN
@@ -27,16 +27,16 @@
 #define MQTT_CLIENT_NAME "Dht22Sensor"
 #endif
 #ifndef MQTT_SERVER
-#define MQTT_SERVER      "127.0.0.1"
+#define MQTT_SERVER "127.0.0.1"
 #endif
 #ifndef MQTT_SERVERPORT
-#define MQTT_SERVERPORT  1883
+#define MQTT_SERVERPORT 1883
 #endif
 #ifndef MQTT_USERNAME
-#define MQTT_USERNAME    ""
+#define MQTT_USERNAME ""
 #endif
 #ifndef MQTT_PASSWORD
-#define MQTT_PASSWORD    ""
+#define MQTT_PASSWORD ""
 #endif
 
 #ifndef REQUIRE_CONFIG

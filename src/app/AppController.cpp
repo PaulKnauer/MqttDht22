@@ -10,7 +10,7 @@ static inline uint32_t millis() {
   return 0;
 }
 
-static inline char *dtostrf(double val, signed char width, unsigned char prec, char *s) {
+static inline char* dtostrf(double val, signed char width, unsigned char prec, char* s) {
   (void)width;
   snprintf(s, 32, "%.*f", prec, val);
   return s;
@@ -19,13 +19,9 @@ static inline char *dtostrf(double val, signed char width, unsigned char prec, c
 
 #include "UserConfig.h"
 
-AppController::AppController(ISensor &sensor, IMqttPublisher &publisher, StatusLed &status_led)
-: sensor_(sensor),
-  publisher_(publisher),
-  status_led_(status_led),
-  last_publish_ms_(0),
-  last_heartbeat_ms_(0),
-  consecutive_errors_(0) {}
+AppController::AppController(ISensor& sensor, IMqttPublisher& publisher, StatusLed& status_led)
+    : sensor_(sensor), publisher_(publisher), status_led_(status_led), last_publish_ms_(0),
+      last_heartbeat_ms_(0), consecutive_errors_(0) {}
 
 void AppController::begin() {
   publisher_.connect();
@@ -72,10 +68,8 @@ void AppController::loop() {
 
 #if MQTT_PUBLISH_JSON
   char payload[96];
-  snprintf(payload, sizeof(payload),
-           "{\"t\":%.1f,\"h\":%.1f,\"ms\":%lu,\"ok\":true}",
-           reading.temperature_c,
-           reading.humidity_percent,
+  snprintf(payload, sizeof(payload), "{\"t\":%.1f,\"h\":%.1f,\"ms\":%lu,\"ok\":true}",
+           reading.temperature_c, reading.humidity_percent,
            static_cast<unsigned long>(reading.timestamp_ms));
   publisher_.publish(MQTT_JSON_PUBLISH_TOPIC, payload, true);
 #endif

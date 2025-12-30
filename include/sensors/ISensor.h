@@ -4,9 +4,9 @@
 #include "sensors/SensorReading.h"
 
 class ISensor {
-  public:
-    virtual ~ISensor() = default;
-    virtual SensorReading read() = 0;
+public:
+  virtual ~ISensor() = default;
+  virtual SensorReading read() = 0;
 };
 
 #endif
