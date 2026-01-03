@@ -19,9 +19,9 @@ static inline char* dtostrf(double val, signed char width, unsigned char prec, c
 
 #include "UserConfig.h"
 
-AppController::AppController(ISensor& sensor, IMqttPublisher& publisher, StatusLed& status_led)
-    : sensor_(sensor), publisher_(publisher), status_led_(status_led), last_publish_ms_(0),
-      last_heartbeat_ms_(0), consecutive_errors_(0) {}
+AppController::AppController(ISensor& sensor, IMqttPublisher& publisher)
+    : sensor_(sensor), publisher_(publisher), last_publish_ms_(0), last_heartbeat_ms_(0),
+      consecutive_errors_(0) {}
 
 void AppController::begin() {
   publisher_.connect();
@@ -29,13 +29,6 @@ void AppController::begin() {
 
 void AppController::loop() {
   publisher_.loop();
-  if (!publisher_.isWifiConnected()) {
-    status_led_.setPattern(LedPattern::BlinkSlow);
-  } else if (!publisher_.isConnected()) {
-    status_led_.setPattern(LedPattern::BlinkFast);
-  } else {
-    status_led_.setPattern(LedPattern::SolidOn);
-  }
   uint32_t now = millis();
   if (now - last_heartbeat_ms_ >= MQTT_HEARTBEAT_INTERVAL_MS) {
     last_heartbeat_ms_ = now;
@@ -53,7 +46,6 @@ void AppController::loop() {
     if (consecutive_errors_ >= SENSOR_ERROR_THRESHOLD) {
       publisher_.publish(MQTT_STATUS_PUBLISH_TOPIC, MQTT_STATUS_OFFLINE, true);
       publisher_.publish(MQTT_ERROR_PUBLISH_TOPIC, "sensor_read_failed", true);
-      status_led_.setPattern(LedPattern::PulseDouble);
     }
     return;
   }

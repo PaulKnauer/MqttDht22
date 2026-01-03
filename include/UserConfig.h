@@ -12,13 +12,6 @@
 #define DHT22_PIN 2
 #endif
 
-#ifndef STATUS_LED_PIN
-#define STATUS_LED_PIN LED_BUILTIN
-#endif
-#ifndef STATUS_LED_ACTIVE_LOW
-#define STATUS_LED_ACTIVE_LOW 1
-#endif
-
 #ifndef DELAY
 #define DELAY 60000
 #endif

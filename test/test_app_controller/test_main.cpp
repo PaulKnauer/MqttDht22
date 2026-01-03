@@ -1,8 +1,6 @@
 #include <unity.h>
 #include <cstring>
 
-#include "led/StatusLed.h"
-
 #include "app/AppController.h"
 #include "UserConfig.h"
 
@@ -64,8 +62,7 @@ public:
 void test_publish_on_ok_reading() {
   FakeSensor sensor;
   FakePublisher publisher;
-  StatusLed status_led(0, true);
-  AppController app(sensor, publisher, status_led);
+  AppController app(sensor, publisher);
 
   app.begin();
   app.loop();
@@ -78,8 +75,7 @@ void test_publish_on_ok_reading() {
 void test_error_publishes_after_threshold() {
   FakeSensor sensor;
   FakePublisher publisher;
-  StatusLed status_led(0, true);
-  AppController app(sensor, publisher, status_led);
+  AppController app(sensor, publisher);
 
   sensor.reading.ok = false;
   app.begin();
